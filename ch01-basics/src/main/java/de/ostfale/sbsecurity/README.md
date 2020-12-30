@@ -34,3 +34,11 @@ openssl pkcs12 -export -in cert.pem -inkey key.pem -out certificate.p12 -name "c
 
 curl -k -u user:db5aaa4c-c0c0-4a27-9535-bcb6893d4446 https://localhost:8080/hello             # use https
 ````
+
+### InMemoryUserDetailsService
+
+To override UserDetailsService forces to override PasswordEncoder too!
+
+````shell
+curl -k -u max:test123 https://localhost:8080/hello                                           # use TLS with the created user
+````

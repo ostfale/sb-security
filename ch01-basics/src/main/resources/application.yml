@@ -2,6 +2,6 @@ server:
   ssl:
     key-store-type: PKCS12
     key-store: classpath:keystore/certificate.p12
-    key-store-password: mastermind
-    key-password: mastermind
+    key-store-password: test123
+    key-password: test123
     enabled: true
