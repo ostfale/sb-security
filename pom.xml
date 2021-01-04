@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>ch01-basics</module>
+        <module>ch02-user</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
