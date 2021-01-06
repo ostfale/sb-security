@@ -1,14 +1,14 @@
 package de.ostfale.sbsecurity.user;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
 
 // separate responsibilities
-@Entity
+//@Entity
 public class EntityUser {
 
-    @Id
+ //   @Id
     private int Id;
     private String userName;
     private String password;
