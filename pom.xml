@@ -6,6 +6,7 @@
     <modules>
         <module>ch01-basics</module>
         <module>ch02-user</module>
+        <module>ch03-password</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
