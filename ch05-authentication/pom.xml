@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ch5-authentification</artifactId>
+    <artifactId>ch5-authentication</artifactId>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>

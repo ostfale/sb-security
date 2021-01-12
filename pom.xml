@@ -6,8 +6,8 @@
     <modules>
         <module>ch01-basics</module>
         <module>ch02-user</module>
-        <module>ch03-password</module>
-        <module>ch5-authentification</module>
+        <module>ch04-password</module>
+        <module>ch05-authentication</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
