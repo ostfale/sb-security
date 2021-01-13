@@ -4,4 +4,4 @@
 
 ````shell
 curl -u max:test1234 http://localhost:8080/hello                    # provides secured response
-````
+``
