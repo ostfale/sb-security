@@ -2,13 +2,15 @@ package de.ostfale.sbsecurity.config;
 
 import de.ostfale.sbsecurity.security.InMemoryUserDetailsService;
 import de.ostfale.sbsecurity.security.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -17,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 
 @Configuration
+@EnableAsync
 public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
     private final AuthenticationProvider authenticationProvider;
@@ -24,6 +27,11 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
     // without Lazy there will be a circular dependency
     public ProjectConfig(@Lazy AuthenticationProvider authenticationProvider) {
         this.authenticationProvider = authenticationProvider;
+    }
+
+    @Bean
+    public InitializingBean initializingBean() {
+        return () -> SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
     }
 
     @Bean
