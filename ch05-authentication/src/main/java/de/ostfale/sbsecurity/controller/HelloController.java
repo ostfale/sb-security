@@ -2,6 +2,7 @@ package de.ostfale.sbsecurity.controller;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.concurrent.DelegatingSecurityContextCallable;
+import org.springframework.security.concurrent.DelegatingSecurityContextExecutorService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -46,6 +48,21 @@ public class HelloController {
             // needs DelegatingSecurityContextCallable to provide Context otherwise NPE
             var contextTask = new DelegatingSecurityContextCallable<>(task);
             return "Ciao, " + executorService.submit(contextTask).get() + "!";
+        } finally {
+            executorService.shutdown();
+        }
+    }
+
+    @GetMapping("/hola")
+    public String hola() throws ExecutionException, InterruptedException {
+        Callable<String> task = () -> {
+            SecurityContext securityContext = SecurityContextHolder.getContext();
+            return securityContext.getAuthentication().getName();
+        };
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        executorService = new DelegatingSecurityContextExecutorService(executorService);
+        try {
+            return "Hola " + executorService.submit(task).get() + "!";
         } finally {
             executorService.shutdown();
         }
