@@ -29,3 +29,11 @@ executorService = new DelegatingSecurityContextExecutorService(executorService);
 ````shell
 curl -u max:test1234 http://localhost:8080/hola                    # delegated security context
 ````
+
+## Form Based Login
+
+Set authentication to httpbasic and change the response header in case of error with authentication
+
+````shell
+curl -v http://localhost:8080/hello                    # error shows custom message
+````
