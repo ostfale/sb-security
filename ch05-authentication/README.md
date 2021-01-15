@@ -34,6 +34,12 @@ curl -u max:test1234 http://localhost:8080/hola                    # delegated s
 
 Set authentication to httpbasic and change the response header in case of error with authentication
 
++ change to  `http.formLogin();`
++ change from @RestController -> @Controller
+
 ````shell
-curl -v http://localhost:8080/hello                    # error shows custom message
+curl -v http://localhost:8080/hello                     # error shows custom message
+
+http://localhost:8080/home                              # redirects to login
+http://localhost:8080/logout                            # redirects to logout page
 ````
