@@ -10,4 +10,5 @@ public class Ch06App {
         SpringApplication.run(Ch06App.class, args);
     }
 
+
 }

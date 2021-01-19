@@ -1,6 +1,7 @@
 package de.ostfale.sbexample.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class User {
     private EncryptionAlgorithm algorithm;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Authority> authorities;
+    private List<Authority> authorities = new ArrayList<>();
 
     public Integer getId() {
         return id;
