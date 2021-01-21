@@ -26,7 +26,7 @@ public class Bootstrap implements CommandLineRunner {
         User john = new User();
         john.setUsername("john");
         john.setAlgorithm(EncryptionAlgorithm.BCRYPT);
-        john.setPassword("$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG");
+        john.setPassword("$2y$10$8NzE.rs54rxgt4ON7NRk0OzlRgDustYtDbvoD80nno0WLfaMYFLcS");
         userRepository.save(john);
 
         Authority readAuthority = new Authority();
