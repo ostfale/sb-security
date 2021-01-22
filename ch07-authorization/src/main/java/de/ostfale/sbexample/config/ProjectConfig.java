@@ -19,12 +19,12 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
         var john = User.withUsername("john")
                 .password("test1234")
-                .authorities("READ")
+                .authorities("read")
                 .build();
 
         var linda = User.withUsername("linda")
                 .password("test4321")
-                .authorities("WRITE")
+                .authorities("read", "write", "delete")
                 .build();
 
         manager.createUser(john);
@@ -44,7 +44,7 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
         // version1: http.authorizeRequests().anyRequest().hasAnyAuthority("READ","WRITE");
         // version2 - more flexible : http.authorizeRequests().anyRequest().access("hasAuthority('WRITE')");
 
-        String expression = "hasAuthority('READ') and !hasAuthority('delete')";
+        String expression = "hasAuthority('read') and !hasAuthority('delete')";
         http.authorizeRequests().anyRequest().access(expression);
     }
 }
