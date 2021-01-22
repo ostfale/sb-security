@@ -9,6 +9,7 @@
         <module>ch04-password</module>
         <module>ch05-authentication</module>
         <module>ch06-webproject</module>
+        <module>ch07-authorization</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
