@@ -19,12 +19,16 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
         var john = User.withUsername("john")
                 .password("test1234")
-                .authorities("read")
+                //  .authorities("read")
+                // .authorities("ROLE_ADMIN")
+                .roles("ADMIN")
                 .build();
 
         var linda = User.withUsername("linda")
                 .password("test4321")
-                .authorities("read", "write", "delete")
+                //  .authorities("read", "write", "delete")
+                // .authorities("ROLE_MANAGER")
+                .roles("MANAGER")
                 .build();
 
         manager.createUser(john);
@@ -40,11 +44,15 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
+        // authority bases
         // version0: simplest http.authorizeRequests().anyRequest().hasAuthority("WRITE");
         // version1: http.authorizeRequests().anyRequest().hasAnyAuthority("READ","WRITE");
-        // version2 - more flexible : http.authorizeRequests().anyRequest().access("hasAuthority('WRITE')");
+        // version2: - more flexible : http.authorizeRequests().anyRequest().access("hasAuthority('WRITE')");
 
         String expression = "hasAuthority('read') and !hasAuthority('delete')";
-        http.authorizeRequests().anyRequest().access(expression);
+        // version3: most flexible way : http.authorizeRequests().anyRequest().access(expression);
+
+        // role bases
+        http.authorizeRequests().anyRequest().hasRole("ADMIN");
     }
 }
