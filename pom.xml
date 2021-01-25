@@ -10,6 +10,7 @@
         <module>ch05-authentication</module>
         <module>ch06-webproject</module>
         <module>ch07-authorization</module>
+        <module>ch08-cfgauth</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
