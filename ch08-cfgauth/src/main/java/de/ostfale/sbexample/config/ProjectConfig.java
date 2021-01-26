@@ -2,6 +2,7 @@ package de.ostfale.sbexample.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -43,7 +44,11 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .mvcMatchers("/hello").hasRole("ADMIN")
                 .mvcMatchers("/ciao").hasRole("MANAGER")
-                .anyRequest().permitAll(); // is default, should be made visible for clarity
+                .mvcMatchers("/product/{code:^[0-9]*$}").permitAll()
+                .mvcMatchers(HttpMethod.GET, "/a").authenticated()
+                .mvcMatchers(HttpMethod.POST, "/a").permitAll()
+                .anyRequest().denyAll(); // is default, should be made visible for clarity
 
+        http.csrf().disable();  // ONLY for testing!!!
     }
 }
