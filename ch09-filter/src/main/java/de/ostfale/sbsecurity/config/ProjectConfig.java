@@ -1,5 +1,6 @@
 package de.ostfale.sbsecurity.config;
 
+import de.ostfale.sbsecurity.filter.AuthenticationLoggingFilter;
 import de.ostfale.sbsecurity.filter.RequestValidationFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +13,8 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuthenticationLoggingFilter(), BasicAuthenticationFilter.class)
                 .authorizeRequests().anyRequest().permitAll();
+        ;
     }
 }
