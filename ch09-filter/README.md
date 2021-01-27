@@ -15,6 +15,17 @@ curl -H "Request-Id:1234" http://localhost:8080/hello   # returns controller res
 Replacing a filter at the same position means both filter are going to be executed in undetermined order. 
 Example: StaticHeaderKey -> here defined in resource file
 
+StaticKeyAuthentication doesn't need a UserDetailsService, since we don't have a user yet. 
+Could be excluded from AutoConfiguration:
+
+````java
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
+@SpringBootApplication(exclude = {UserDetailsServiceAutoConfiguration.class})
+````
+
 ````shell
 curl -H "Authentication:SD9dICjl1e" http://localhost:8080/hello  # works
 ````
