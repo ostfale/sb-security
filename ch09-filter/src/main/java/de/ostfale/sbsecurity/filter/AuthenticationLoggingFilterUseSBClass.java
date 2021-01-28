@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
- * Is going to be executed only once and provided SB solution. Casts types already. 
+ * Is going to be executed only once and provided SB solution. Casts types already.
  */
 public class AuthenticationLoggingFilterUseSBClass  extends OncePerRequestFilter {
 

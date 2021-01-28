@@ -12,6 +12,7 @@
         <module>ch07-authorization</module>
         <module>ch08-cfgauth</module>
         <module>ch09-filter</module>
+        <module>ch10-cors</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
