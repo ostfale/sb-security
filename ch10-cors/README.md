@@ -19,3 +19,18 @@ $ curl -X POST http://localhost:8080/hello
 -H 'X-CSRF-TOKEN: 55e8bddd-4f08-4dcd-9cab-7aa44b2da18e'
 POST Hello from CSRF
 ````
+
+### Store Token in own repositoy
+
++ use JPARepository
+
+````shell
+$ curl -H "X-IDENTIFIER:12345" http://localhost:8080/hello  # create entry in DB 
+-> GET Hello from CSRF
+
+$ curl -XPOST -H "X-IDENTIFIER:12345" -H "X-CSRF-TOKEN:2277d995-f67c-46da-8aa9-fc3936f1eaa7"  http://localhost:8080/hello # read token from db
+POST Hello from CSRF
+
+$ curl -XPOST http://localhost:8080/hello   # without token = error
+{"timestamp":"2021-02-01T07:31:20.890+00:00","status":403,"error":"Forbidden","message":"","path":"/hello"}
+````
