@@ -13,6 +13,7 @@
         <module>ch08-cfgauth</module>
         <module>ch09-filter</module>
         <module>ch10-cors</module>
+        <module>ch11-webproject</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
